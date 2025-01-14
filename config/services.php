@@ -36,7 +36,7 @@ return [
     ],
 
     'api' => [
-        'base_url' => env('API_BASE_URL', 'https://example.com'),
+        'url' => env('API_BASE_URL', 'https://example.com'),
         'key' => env('API_KEY', null),
     ],
 
