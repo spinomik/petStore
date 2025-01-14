@@ -54,6 +54,9 @@ class PetController extends Controller
     {
         $id = $request->input('id');
         $pet = $this->petService->getPet($id);
+        if (empty($pet['photoUrls'])) {
+            $pet['photoUrls'] = ['https://img.freepik.com/free-vector/hand-drawn-no-photo-sign_23-2149278213.jpg?t=st=1736882123~exp=1736885723~hmac=d87a6d612f1c5dda46813ae04bc01a3f18bd562140e6b5cf7a4c9b792ff9dc85&w=740'];
+        }
         return view('pets.show', [
             'pet' => $pet
         ]);
@@ -62,8 +65,14 @@ class PetController extends Controller
     public function edit(int $id)
     {
         $pet = $this->petService->getPet($id);
-
-        return view('pets.edit', ['pet' => $pet]);
+        if (empty($pet['photoUrls'])) {
+            $pet['photoUrls'] = [''];
+        }
+        return view('pets.edit', [
+            'pet' => $pet,
+            'categories' => PetCategoryEnum::getAll(),
+            'statuses' => PetStatusEnum::getAll()
+        ]);
     }
 
     public function update(Request $request, int $id)
