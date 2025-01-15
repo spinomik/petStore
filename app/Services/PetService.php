@@ -32,4 +32,10 @@ class PetService
     {
         return $this->petRepository->deletePet($id);
     }
+
+    public function existsPet(int $id): bool
+    {
+
+        return $this->petRepository->existsPet($id);
+    }
 }

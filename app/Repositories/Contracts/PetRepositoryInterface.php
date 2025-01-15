@@ -8,4 +8,5 @@ interface PetRepositoryInterface
     public function getPet(int $id): array;
     public function updatePet(int $id, array $data): array;
     public function deletePet(int $id): array;
+    public function existsPet(int $id): bool;
 }

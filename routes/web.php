@@ -18,3 +18,5 @@ Route::get('/pets/search', [PetController::class, 'search'])->name('pets.search'
 Route::get('/pets/{id}', [PetController::class, 'show'])->name('pets.show');
 
 Route::delete('/pets/{id}', [PetController::class, 'destroy'])->name('pets.destroy');
+
+Route::get('/pets/confirm-overwrite/{id}', [PetController::class, 'confirmOverwrite'])->name('pets.confirmOverwrite');

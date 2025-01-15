@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="text-center">Szczegóły</h1> <!-- Wyśrodkowanie nazwy zwierzaka -->
+        <h1 class="text-center">Szczegóły</h1>
         <div class="card">
             <div class="card-body">
                 <div class="row">

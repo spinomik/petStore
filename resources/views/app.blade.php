@@ -50,6 +50,7 @@
             border-radius: 15px 15px 0 0;
         }
     </style>
+    @include('components.alert')
     <div class="content-container">
         @yield('content')
     </div>

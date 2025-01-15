@@ -11,7 +11,7 @@
             <div class="col">
                 <div class="btn-container d-flex justify-content-center align-items-center">
                     <div class="input-group mb-3" id="searchPetInputGroup">
-                        <input type="text" class="form-control" id="petId" placeholder="Podaj ID zwierzaka"
+                        <input type="number" class="form-control" id="petId" placeholder="Podaj ID zwierzaka"
                             aria-label="Pet ID" aria-describedby="button-addon2" required>
                         <button class="btn btn-outline-primary" type="button" id="button-addon2"
                             onclick="submitSearchForm()">Szukaj</button>
