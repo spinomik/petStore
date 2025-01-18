@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Enums\PetErrorEnum;
 use App\Enums\PetOperationEnum;
 use Illuminate\Http\Client\Response;
-use Exception;
 
 class ApiErrorHandler
 {

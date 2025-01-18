@@ -2,10 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Enums\PetOperationEnum;
 use App\Repositories\Contracts\PetRepositoryInterface;
 use App\Services\ApiErrorHandler;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use App\Services\PetAdapter;
+use App\Enums\PetOperationEnum;
+use App\Models\Pet;
 
 class PetRepository implements PetRepositoryInterface
 {
@@ -18,28 +21,28 @@ class PetRepository implements PetRepositoryInterface
         $this->apiKey = config('services.api.key');
     }
 
-    public function createPet(array $data): array
+    public function createPet(Pet $pet): Response
     {
-        $response = Http::post("{$this->apiUrl}", $data);
+        $response = Http::post("{$this->apiUrl}", PetAdapter::toArray($pet));
         ApiErrorHandler::handleError($response, PetOperationEnum::CREATE);
 
-        return $response->json();
+        return $response;
     }
 
-    public function getPet(int $id): array
+    public function getPet(int $id): Response
     {
         $response = Http::get("{$this->apiUrl}/{$id}");
         ApiErrorHandler::handleError($response, PetOperationEnum::GET);
 
-        return $response->json();
+        return $response;
     }
 
-    public function updatePet(int $id, array $data): array
+    public function updatePet(Pet $pet): Response
     {
-        $response = Http::put("{$this->apiUrl}", $data);
+        $response = Http::put("{$this->apiUrl}",  PetAdapter::toArray($pet));
         ApiErrorHandler::handleError($response, PetOperationEnum::UPDATE);
 
-        return $response->json();
+        return $response;
     }
 
     public function deletePet(int $id): array

@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Pet;
 use App\Repositories\Contracts\PetRepositoryInterface;
+use Illuminate\Http\Client\Response;
+
 
 class PetService
 {
@@ -13,19 +16,21 @@ class PetService
         $this->petRepository = $petRepository;
     }
 
-    public function createPet(array $data): array
+    public function createPet(Pet $pet): Response
     {
-        return $this->petRepository->createPet($data);
+        return $this->petRepository->createPet($pet);
     }
 
-    public function getPet(int $id): array
+    public function getPet(int $id): Pet
     {
-        return $this->petRepository->getPet($id);
+        $response = $this->petRepository->getPet($id);
+        $pet = PetAdapter::fromApi($response);
+        return $pet;
     }
 
-    public function updatePet(int $id, array $data): array
+    public function updatePet(Pet $pet): Response
     {
-        return $this->petRepository->updatePet($id, $data);
+        return $this->petRepository->updatePet($pet);
     }
 
     public function deletePet(int $id): array

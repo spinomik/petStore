@@ -17,6 +17,16 @@ enum PetCategoryEnum: string
         return (int) explode(':', $this->value)[0];
     }
 
+    public static function fromId(int $id): ?self
+    {
+        foreach (self::cases() as $case) {
+            if ($case->getId() === $id) {
+                return $case;
+            }
+        }
+        return self::OTHER;
+    }
+
     public function getName(): string
     {
         return explode(':', $this->value)[1];
